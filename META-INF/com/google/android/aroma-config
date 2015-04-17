@@ -1,0 +1,74 @@
+﻿theme("ics");
+##
+# Initializing Rom Information
+#
+ini_set("rom_name",             "Android Fixes");
+ini_set("rom_version",          "0.0.1");
+ini_set("rom_author",           "brimstone");
+ini_set("rom_device",           "Any Device");
+ini_set("rom_date",             "April 17 2015");
+
+#
+# Set Small Font to Support all fonts
+#
+fontresload( "0", "ttf/Roboto-Regular.ttf;ttf/DroidSansFallback.ttf;", "12" );
+fontresload( "1", "ttf/Roboto-Regular.ttf;ttf/DroidSansFallback.ttf;", "14" );
+#
+# INCLUDE EXAMPLE = Language Selection & Form Example
+#
+ini_set("text_next", "Install Now");
+ini_set("icon_next", "@installbutton");
+form(
+    "Android Fixes",
+    "Select the fixes to enable",
+    "@personalize",
+    "fixes.prop",
+  #
+  # Type:
+  #  - group              = Group
+  #  - select             = Select Item
+  #  - select.selected    = Selected Select Item
+  #  - check              = Checkbox Item
+  #  - check.checked      = Checked Checkbox Item
+  #  - hide               = Hidden
+  #
+  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
+  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
+  #-------------+--------+-------------------------------------------------------+---------------#
+      "dpi",     "DPI Fixes",       "Change DPI from default",                    "check",
+    "remove",    "Remove Apps",     "",                                           "group",
+      "browser", "Default Browser", "Remove Default browser",                     "check"
+);
+
+textbox(
+ "Form Example",
+ "Form generated prop file",
+ "@update",
+ readtmpfile("fixes.prop")
+);
+
+
+ini_set("text_next", "Finish");
+ini_set("icon_next", "@finish");
+setvar("retstatus",
+  install(
+	#-- Title
+      "Installing",
+	
+	#-- Installation Process message
+	  "<b>"+ini_get("rom_name")+"</b> are being installed.\n\n"+
+      "Please wait while installation wizard installs <b>"+ini_get("rom_name")+
+	  "</b>. This may take several minutes.",
+	
+	#-- Installation Icon
+      "@install",
+	
+	#-- Installation Finish Message
+      "The installation wizard has successfully installed <b>"+ini_get("rom_name")+
+	  "</b>. Press Next to continue."
+  )
+);
+
+#if prop("fixes.prop","colorspace")!="default" then
+#  ini_set("force_colorspace",prop("colorspace.prop","colorspace"));
+#endif;

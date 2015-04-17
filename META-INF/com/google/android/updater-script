@@ -1,0 +1,14 @@
+# Example:
+ui_print("Just Testing the Installer...");
+sleep(5);
+unmount("/data");
+#mount("MTD","userdata","/data");
+##---- Customize Packages
+	  
+# Facebook
+if
+  file_getprop("/tmp/aroma/customize.prop","item.1.1") == "1"
+then
+  ui_print("@  Installing Facebook");
+  package_extract_dir("blah", "/data");
+endif;
