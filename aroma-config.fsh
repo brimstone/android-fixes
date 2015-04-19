@@ -6,7 +6,7 @@ ini_set("rom_name",             "Android Fixes");
 ini_set("rom_version",          "0.0.1");
 ini_set("rom_author",           "brimstone");
 ini_set("rom_device",           "Any Device");
-ini_set("rom_date",             "April 17 2015");
+ini_set("rom_date",             "$(date "+%B %d %Y")");
 
 #
 # Set Small Font to Support all fonts
@@ -22,7 +22,7 @@ form(
     "Android Fixes",
     "Select the fixes to enable",
     "@personalize",
-    "fixes.prop",
+    "fixes.prop"
   #
   # Type:
   #  - group              = Group
@@ -32,21 +32,19 @@ form(
   #  - check.checked      = Checked Checkbox Item
   #  - hide               = Hidden
   #
-  #-------------+-----------------------[ Selectbox Without Group ]------------------------------#
-  # PROP ID     | TITLE            |  SUBTITLE                                   |    Type       #
-  #-------------+--------+-------------------------------------------------------+---------------#
-      "dpi",     "DPI Fixes",       "Change DPI from default",                    "check",
-    "remove",    "Remove Apps",     "",                                           "group",
-      "browser", "Default Browser", "Remove Default browser",                     "check"
-);
+  #-------------+--------------------+--[ Selectbox Without Group ]----------------+---------------#
+  # PROP ID     | TITLE              |  SUBTITLE                                   |    Type       #
+  #-------------+--------------------+---------------------------------------------+---------------#
 
-textbox(
- "Form Example",
- "Form generated prop file",
- "@update",
- readtmpfile("fixes.prop")
+$(cd fixes;
+for f in *; do
+	[ ! -d "$f" ] && continue
+	[ ! -e "$f.txt" ] && continue
+	title=$(grep "^Title: " "$f.txt" | sed -E 's/^Title: +//')
+	subtitle=$(grep "^Subtitle: " "$f.txt" | sed -E 's/^Subtitle: +//')
+	echo ",\"$f\", \"$title\", \"$subtitle\", \"check\""
+done)
 );
-
 
 ini_set("text_next", "Finish");
 ini_set("icon_next", "@finish");
@@ -58,14 +56,14 @@ setvar("retstatus",
 	#-- Installation Process message
 	  "<b>"+ini_get("rom_name")+"</b> are being installed.\n\n"+
       "Please wait while installation wizard installs <b>"+ini_get("rom_name")+
-	  "</b>. This may take several minutes.",
+	  "</b>.",
 	
 	#-- Installation Icon
       "@install",
 	
 	#-- Installation Finish Message
       "The installation wizard has successfully installed <b>"+ini_get("rom_name")+
-	  "</b>. Press Next to continue."
+	  "</b>."
   )
 );
 
