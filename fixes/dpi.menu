@@ -1,0 +1,24 @@
+selectbox(
+	#-- Title
+	"DPI Fixes",
+	  
+	#-- Sub Title
+	"Select the program or mod features you want to installed.\n"+
+	"Select an item in the list below to change how a feature is installed.",
+	  
+	#-- Icon: <AROMA Resource Dir>/icons/personalize.png or <ThemeDir>/icon.personalize.png
+	"@personalize",
+	  
+	#-- Will be saved in /tmp/aroma/customize.prop
+	"dpi.prop"
+	  
+	#------------------------------------------------[ Checkbox Without Group ]----------------------------------------------#
+	# TITLE            |  SUBTITLE                                                                           | Initial Value #
+	#------------------+-------------------------------------------------------------------------------------+---------------#
+	# These have to match fixes/dpi.updater
+	,"180",           "",      0
+	,"240",           "",      0
+	,"250",           "",      0
+	,"320",           "Default for d2tmo",      0
+	,"480",           "Default for bacon",      0
+);

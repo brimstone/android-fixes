@@ -18,8 +18,9 @@ if
 then
   ui_print("Installing $title");
   package_extract_dir("fixes/$f", "/");
-endif;
 dog
+	[ -e "$f.updater" ] && cat "$f.updater"
+echo "endif;"
 done)
 
 ui_print("Unmounting directories");

@@ -21,6 +21,6 @@ case "$1" in
     # Stub
   ;;
   post-restore)
-    sed -i 's/ro.sf.lcd_density=.*/ro.sf.lcd_density=180/' /system/build.prop
+    sed -i 's/ro.sf.lcd_density=.*/ro.sf.lcd_density=DENSITY/' /system/build.prop
   ;;
 esac

@@ -42,9 +42,26 @@ for f in *; do
 	[ ! -e "$f.txt" ] && continue
 	title=$(grep "^Title: " "$f.txt" | sed -E 's/^Title: +//')
 	subtitle=$(grep "^Subtitle: " "$f.txt" | sed -E 's/^Subtitle: +//')
-	echo ",\"$f\", \"$title\", \"$subtitle\", \"check\""
+	cat <<doggy
+,"$f", "$title", "$subtitle", "check"
+doggy
 done)
 );
+
+
+$(cd fixes;
+for f in *; do
+	[ ! -d "$f" ] && continue
+	[ ! -e "$f.txt" ] && continue
+	[ ! -e "$f.menu" ] && continue
+	title=$(grep "^Title: " "$f.txt" | sed -E 's/^Title: +//')
+	subtitle=$(grep "^Subtitle: " "$f.txt" | sed -E 's/^Subtitle: +//')
+	cat <<doggy
+if prop("fixes.prop", "$f")=="1" then
+$(cat "$f.menu")
+endif;
+doggy
+done)
 
 ini_set("text_next", "Finish");
 ini_set("icon_next", "@finish");

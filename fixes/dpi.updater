@@ -1,0 +1,36 @@
+# replace the placeholder with the value 
+# these have to match fixes/dpi.menu
+if
+	file_getprop("/tmp/aroma/dpi.prop","selected.0") == "1"
+then
+	ui_print("Setting DPI to 180");
+	run_program("/sbin/sed", "-i", "s/DENSITY/180/", "/system/addon.d/99-dpi.sh");
+endif;
+
+if
+	file_getprop("/tmp/aroma/dpi.prop","selected.0") == "2"
+then
+	ui_print("Setting DPI to 240");
+	run_program("/sbin/sed", "-i", "s/DENSITY/240/", "/system/addon.d/99-dpi.sh");
+endif;
+
+if
+	file_getprop("/tmp/aroma/dpi.prop","selected.0") == "3"
+then
+	ui_print("Setting DPI to 250");
+	run_program("/sbin/sed", "-i", "s/DENSITY/250/", "/system/addon.d/99-dpi.sh");
+endif;
+
+if
+	file_getprop("/tmp/aroma/dpi.prop","selected.0") == "4"
+then
+	ui_print("Setting DPI to 320");
+	run_program("/sbin/sed", "-i", "s/DENSITY/320/", "/system/addon.d/99-dpi.sh");
+endif;
+
+if
+	file_getprop("/tmp/aroma/dpi.prop","selected.0") == "5"
+then
+	ui_print("Setting DPI to 480");
+	run_program("/sbin/sed", "-i", "s/DENSITY/480/", "/system/addon.d/99-dpi.sh");
+endif;
