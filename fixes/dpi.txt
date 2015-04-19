@@ -1,0 +1,2 @@
+Title: DPI Fixes
+Subtitle: Change DPI from default
