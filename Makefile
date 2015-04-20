@@ -4,7 +4,7 @@ zip:
 	zip -r update.zip META-INF fixes
 
 upload:
-	adb push update.zip /sdcard
+	adb push update.zip /sdcard/update.zip
 
 test-reboot:
 	adb shell 'echo "install /sdcard/update.zip" > /cache/recovery/openrecoveryscript'
