@@ -3,7 +3,7 @@
 # Initializing Rom Information
 #
 ini_set("rom_name",             "Android Fixes");
-ini_set("rom_version",          "0.0.1");
+ini_set("rom_version",          "0.0.0");
 ini_set("rom_author",           "brimstone");
 ini_set("rom_device",           "Any Device");
 ini_set("rom_date",             "$(date "+%B %d %Y")");
@@ -19,7 +19,7 @@ fontresload( "1", "ttf/Roboto-Regular.ttf;ttf/DroidSansFallback.ttf;", "14" );
 ini_set("text_next", "Install Now");
 ini_set("icon_next", "@installbutton");
 form(
-    "Android Fixes",
+    ini_get("rom_name") + " " + ini_get("rom_version"),
     "Select the fixes to enable",
     "@personalize",
     "fixes.prop"
